@@ -1,9 +1,9 @@
-
 #! /usr/bin/env python3
 import discord
 import asyncio
 import logging
 import time
+import ImportMySecrets
 
 logging.basicConfig(level=logging.INFO)
 
@@ -41,10 +41,11 @@ async def on_message(message):
       counter = 0
       tmp = await client.send_message(channel, 'Calculating messages...')
       async for log in client.logs_from(message.channel, limit=100):
-         if log.author == message.author:
+        if log.author == message.author:
             counter += 1
             
-         await client.edit_message(tmp, 'You have {} messages.'.format(counter))
+            
+        await client.edit_message(tmp, 'You have {} messages.'.format(counter))
       
    if message.content.startswith('!sleep'):
       All_messages = client.messages
@@ -78,4 +79,4 @@ async def on_message(message):
 
 #Tokens
 #-------------------------------------------------------------------------------------------------------------------------------------------------------
-client.run('')
+client.run(ImportMySecrets.Token1)
